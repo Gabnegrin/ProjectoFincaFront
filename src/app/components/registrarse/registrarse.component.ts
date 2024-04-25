@@ -6,6 +6,7 @@ import { Propietario } from '../../models/Propietario.model';
 import { PropietarioDTO } from '../../models/PropietarioDTO.model';
 import { ClienteDTO } from '../../models/ClienteDTO.model';
 import { AxiosHandlerService } from '../../services/axios-handler.service'
+import { DatosCompartidosService } from '../../services/datos-compartidos.service'
 
 @Component({
   selector: 'app-registrarse',
@@ -19,7 +20,7 @@ export class RegistrarseComponent {
     clienteDTO: ClienteDTO = new ClienteDTO(null, '','','','',0,0,false);
     Propietario: Propietario = new Propietario(null, '','','','','',0,0,false,[]);
     propietarioDTO: PropietarioDTO = new PropietarioDTO(null,'','','','',0,0,false);
-    constructor(private router: Router, private axiosHandlerService: AxiosHandlerService) { }
+    constructor(private router: Router, private axiosHandlerService: AxiosHandlerService, private datoscompartidos: DatosCompartidosService) { }
 
     Iracomponente(){
     const tipoUsuario = (<HTMLSelectElement>document.getElementById('tipoUsuario')).value;
@@ -51,6 +52,7 @@ export class RegistrarseComponent {
       this.axiosHandlerService.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/cliente', propietario)
       .then(response => {
         this.propietarioDTO = response.data;
+        this.datoscompartidos.setPropietarioDTO(this.propietarioDTO);
       })
       .catch(error => {
         console.error(error);
@@ -60,6 +62,7 @@ export class RegistrarseComponent {
       this.axiosHandlerService.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/propiedad', cliente)
       .then(response => {
         this.clienteDTO = response.data;
+        this.datoscompartidos.setClienteDTO(this.clienteDTO);
       })
       .catch(error => {
         console.error(error);
