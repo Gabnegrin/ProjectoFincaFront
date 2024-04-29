@@ -80,3 +80,17 @@ p {
 .main{
     padding-top: 10rem;
 }
+.boton {
+    background-color: #dd4b1b; /* Set background color to white */
+    border: none; /* Remove default border */
+    color: white;
+    padding: 10px 20px; /* Add some padding for better spacing */
+    font-size: 16px; /* Set font size */
+    cursor: pointer; /* Indicate clickable behavior */
+    border-radius: 5px; /* Add rounded corners */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Smooth transition on hover */
+  }
+  
+  .boton:hover {
+    background-color: #4a4a4a; /* Change background color on hover */
+  }

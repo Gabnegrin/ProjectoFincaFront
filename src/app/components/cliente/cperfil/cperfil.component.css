@@ -10,6 +10,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 80%;
+    min-width: 500px;
 }
 
 .profile {
@@ -53,4 +55,7 @@ body {
 
 .change-button:hover {
     background-color: darkblue;
+}
+.todo{
+    width: 100%;
 }

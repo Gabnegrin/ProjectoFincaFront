@@ -8,6 +8,7 @@ import { ClienteDTO } from '../../models/ClienteDTO.model';
 import { AxiosHandlerService } from '../../services/axios-handler.service'
 import { DatosCompartidosService } from '../../services/datos-compartidos.service'
 
+
 @Component({
   selector: 'app-registrarse',
   standalone: true,
@@ -20,7 +21,9 @@ export class RegistrarseComponent {
     clienteDTO: ClienteDTO = new ClienteDTO(null, '','','','',0,0,false);
     Propietario: Propietario = new Propietario(null, '','','','','',0,0,false,[]);
     propietarioDTO: PropietarioDTO = new PropietarioDTO(null,'','','','',0,0,false);
-    constructor(private router: Router, private axiosHandlerService: AxiosHandlerService, private datoscompartidos: DatosCompartidosService) { }
+    constructor(private router: Router, private axiosHandlerService: AxiosHandlerService, private datoscompartidos: DatosCompartidosService) { 
+      console.log('Llegue aqui')
+    }
 
     Iracomponente(){
     const tipoUsuario = (<HTMLSelectElement>document.getElementById('tipoUsuario')).value;
@@ -33,7 +36,7 @@ export class RegistrarseComponent {
       this.cliente.contrasena = (<HTMLInputElement>document.getElementById('contrasena_usu')).value;
       this.cliente.edad = parseInt((<HTMLInputElement>document.getElementById('edad_usu')).value, 10);
       this.postCliente(this.cliente);
-      this.router.navigate(['/register']);
+      this.router.navigate(['/p_cliente/cperfil']);
     } else if (tipoUsuario === 'propietario') {
       this.Propietario.nombre = (<HTMLInputElement>document.getElementById('nombre_usu')).value;
       this.Propietario.apellido = (<HTMLInputElement>document.getElementById('apellido_usu')).value;
@@ -42,7 +45,7 @@ export class RegistrarseComponent {
       this.Propietario.contrasena = (<HTMLInputElement>document.getElementById('contrasena_usu')).value;
       this.Propietario.edad = parseInt((<HTMLInputElement>document.getElementById('edad_usu')).value, 10);
       this.postPropietario(this.Propietario);
-      this.router.navigate(['/register']);
+      this.router.navigate(['/p_propietario/perfil']);
     } else {
       console.error('Tipo de usuario no válido');
     }
@@ -51,18 +54,16 @@ export class RegistrarseComponent {
     postPropietario(propietario: Propietario): void{
       this.axiosHandlerService.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/cliente', propietario)
       .then(response => {
-        this.propietarioDTO = response.data;
-        this.datoscompartidos.setPropietarioDTO(this.propietarioDTO);
+        this.datoscompartidos.setPropietarioDTO(response.data);
       })
       .catch(error => {
         console.error(error);
       });
     }
     postCliente(cliente: Cliente): void{
-      this.axiosHandlerService.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/propiedad', cliente)
+      this.axiosHandlerService.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/propietario', cliente)
       .then(response => {
-        this.clienteDTO = response.data;
-        this.datoscompartidos.setClienteDTO(this.clienteDTO);
+        this.datoscompartidos.setClienteDTO(response.data);
       })
       .catch(error => {
         console.error(error);
