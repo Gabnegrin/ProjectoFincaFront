@@ -13,52 +13,43 @@ import { ClienteDTO } from '../../../models/ClienteDTO.model';
   styleUrl: './cperfil.component.css'
 })
 export class CperfilComponent {
-  @ViewChild('usuario') usuarioElement: ElementRef | undefined;
-  @ViewChild('nombre') nombreElement: ElementRef | undefined;
-  @ViewChild('apellido') apellidoElement: ElementRef | undefined;
-  @ViewChild('correo') correoElement: ElementRef | undefined;
-  @ViewChild('edad') edadElement: ElementRef | undefined;
-  @ViewChild('contrasena') contrasenaElement: ElementRef | undefined;
+  usuario: string = '...';
+  nombre: string = '...';
+  apellido: string = '...';
+  correo: string = '...';
+  edad: number = 0; // Suponiendo que la edad es un número
+  contrasena: string = '...'; // Suponiendo que la contraseña es un string
 
-  constructor(private axiosHandlerService: AxiosHandlerService, private datoscompartidos: DatosCompartidosService) {
-    console.log("llegue aqui")
-    console.log(this.datoscompartidos.clienteDTO.usuario)
+  constructor(private servicio_http: AxiosHandlerService, private datoscompartidos: DatosCompartidosService) {
    }
 
-  ngAfterViewInit() {
-    this.rellenarValores();
-    if (this.usuarioElement && this.usuarioElement.nativeElement) {
-      this.usuarioElement.nativeElement.id = this.datoscompartidos.clienteDTO.usuario;
-    }
-  
-    if (this.nombreElement && this.nombreElement.nativeElement) {
-      this.nombreElement.nativeElement.id = this.datoscompartidos.clienteDTO.nombre;
-    }
-  
-    if (this.apellidoElement && this.apellidoElement.nativeElement) {
-      this.apellidoElement.nativeElement.id = this.datoscompartidos.clienteDTO.apellido;
-    }
-  
-    if (this.correoElement && this.correoElement.nativeElement) {
-      this.correoElement.nativeElement.id = this.datoscompartidos.clienteDTO.correo;
-    }
-  
-    if (this.edadElement && this.edadElement.nativeElement) {
-      this.edadElement.nativeElement.id = this.datoscompartidos.clienteDTO.edad;
-    }
+   ngOnInit(): void {
+    this.obtener();
   }
 
-  rellenarValores():void{
-      const auxiliar1 = 'http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/cliente/'
-      const auxiliar2 = this.datoscompartidos.clienteDTO.id
-      const auxiliar3 = auxiliar1 + auxiliar2?.toString
-      
-      this.axiosHandlerService.getData(auxiliar3)
+  obtener(){
+    const auxiliar1 = 'http://localhost:8080/api/javeriana/grupo25/cliente/'
+      const clienteId = this.datoscompartidos.cliente?.id;
+      const url = auxiliar1 + (clienteId !== null ? clienteId.toString() : '');
+      console.log("esta es la utl" + url);
+      this.servicio_http.getData(url)
       .then(response => {
-        this.datoscompartidos.setClienteDTO(response.data);
+        this.datoscompartidos.setCliente(response.data);
+        this.obtenerDatosUsuario();
+
       })
       .catch(error => {
         console.error(error);
       });
+  }
+  obtenerDatosUsuario(): void {
+    if (this.datoscompartidos.cliente) {
+      this.usuario = this.datoscompartidos.cliente.usuario || this.usuario;
+      this.nombre = this.datoscompartidos.cliente.nombre || this.nombre;
+      this.apellido = this.datoscompartidos.cliente.apellido || this.apellido;
+      this.correo = this.datoscompartidos.cliente.correo || this.correo;
+      this.edad = this.datoscompartidos.cliente.edad || this.edad;
+      this.contrasena = this.datoscompartidos.cliente.contrasena || this.contrasena;
+    }
   }
 }

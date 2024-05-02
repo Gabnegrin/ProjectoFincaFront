@@ -54,7 +54,7 @@ export class RegistrarseComponent {
     postPropietario(propietario: Propietario): void{
       this.axiosHandlerService.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/cliente', propietario)
       .then(response => {
-        this.datoscompartidos.setPropietarioDTO(response.data);
+        this.datoscompartidos.setPropietario(response.data);
       })
       .catch(error => {
         console.error(error);
@@ -63,7 +63,7 @@ export class RegistrarseComponent {
     postCliente(cliente: Cliente): void{
       this.axiosHandlerService.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/propietario', cliente)
       .then(response => {
-        this.datoscompartidos.setClienteDTO(response.data);
+        this.datoscompartidos.setCliente(response.data);
       })
       .catch(error => {
         console.error(error);

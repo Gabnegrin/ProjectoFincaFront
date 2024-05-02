@@ -2,27 +2,27 @@ import { Solicitud } from './Solicitud.model';
 
 export class Cliente {
     id: number | null;
-    nombre: string;
-    apellido: string;
-    correo: string;
-    usuario: string;
-    contrasena: string;
-    edad: number;
-    calificacion: number;
-    eliminado: boolean;
-    solicitudes: Solicitud[];
+    nombre: string | null;
+    apellido: string | null;
+    correo: string | null;
+    usuario: string | null;
+    contrasena: string | null;
+    edad: number | null;
+    calificacion: number | null;
+    eliminado: boolean | null;
+    solicitudes: Solicitud[] | null;
     
     constructor(
       id: number | null = null,
-      nombre: string,
-      apellido: string,
-      correo: string,
-      usuario: string,
-      contrasena: string,
-      edad: number,
-      calificacion: number,
-      eliminado: boolean,
-      solicitudes: Solicitud[]
+      nombre: string | null = null,
+      apellido: string | null = null,
+      correo: string | null = null,
+      usuario: string | null = null,
+      contrasena: string | null = null, 
+      edad: number | null = null,
+      calificacion: number | null = null,
+      eliminado: boolean | null = null,
+      solicitudes: Solicitud[]| null = null
     ) {
       this.id = id;
       this.nombre = nombre;

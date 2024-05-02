@@ -3,30 +3,30 @@ import { Propiedad } from './Propiedad.model';
 
 
 export class Solicitud {
-  id: number;
-  c_cliente: number;
-  c_propietario: number;
-  c_propiedad: number;
-  preciot: number;
-  entrada: Date;
-  salida: Date;
-  estado: number;
-  eliminado: boolean;
-  cliente: Cliente;
-  propiedad2: Propiedad;
+  id: number | null;
+  c_cliente: number | null;
+  c_propietario: number | null;
+  c_propiedad: number | null;
+  preciot: number | null;
+  entrada: Date | null;
+  salida: Date | null;
+  estado: number | null;
+  eliminado: boolean| null;
+  cliente: Cliente | null;
+  propiedad2: Propiedad | null;
   
   constructor(
-    id: number,
-    c_cliente: number,
-    c_propietario: number,
-    c_propiedad: number,
-    preciot: number,
-    entrada: Date,
-    salida: Date,
-    estado: number,
-    eliminado: boolean,
-    cliente: Cliente,
-    propiedad2: Propiedad
+    id: number | null = null,
+    c_cliente: number | null = null,
+    c_propietario: number | null = null,
+    c_propiedad: number | null = null,
+    preciot: number | null = null,
+    entrada: Date | null = null,
+    salida: Date | null = null,
+    estado: number | null = null,
+    eliminado: boolean | null = null,
+    cliente: Cliente | null = null,
+    propiedad2: Propiedad | null = null
   ) {
     this.id = id;
     this.c_cliente = c_cliente;

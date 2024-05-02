@@ -60,4 +60,22 @@ body {
     border-top-left-radius: 10px; /* Redondear la esquina superior izquierda */
     border-top-right-radius: 10px; /* Redondear la esquina superior derecha */
 }
+.options ul {
+    list-style-type: none; /* Remove list decoration */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack elements vertically */
+}
+
+.options ul li {
+    margin-bottom: 4px; /* Add space between elements */
+    flex-grow: 1; /* Each element occupies the entire space */
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space between text and button */
+    align-items: center; /* Center elements vertically */
+}
+
+.options ul li button {
+    margin-left: 10px; /* Add space between text and button */
+}
 

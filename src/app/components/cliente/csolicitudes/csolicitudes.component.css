@@ -10,6 +10,7 @@ body {
     display: flex;
     background-color: #f2f2f2; /* Fondo gris claro */
     min-height: 100vh;
+    padding-top: 12rem;
 }
 
 .profile, .options {
@@ -57,4 +58,25 @@ body {
     border-top-left-radius: 15px; /* Redondear la esquina superior izquierda */
     border-top-right-radius: 15px; /* Redondear la esquina superior derecha */
     margin-bottom: 20px; /* Espacio inferior */
+}
+.todo{
+    padding-top: 20rem;
+}
+.options ul {
+    list-style-type: none; /* Remove list decoration */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack elements vertically */
+}
+
+.options ul li {
+    margin-bottom: 4px; /* Add space between elements */
+    flex-grow: 1; /* Each element occupies the entire space */
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space between text and button */
+    align-items: center; /* Center elements vertically */
+}
+
+.options ul li button {
+    margin-left: 10px; /* Add space between text and button */
 }

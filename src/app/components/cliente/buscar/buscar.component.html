@@ -11,10 +11,14 @@
         <input type="text" placeholder="Buscar por nombre...">
         <button>Buscar</button>
     </div>
-    <div class="content-container">
+    <div class="content-container options">
         <div class="content-box">
             <div class="content-header">Propiedades Encontradas</div>
-            <!-- Elementos de contenido aquí -->
+            <ul>
+                <li *ngFor="let propiedad of propiedades">
+                  ID: {{ propiedad.id }} - nombre: {{ propiedad.nombre }} - valor por dia: {{ propiedad.valordia }}  <button (click)="obtenerpropiedad(propiedad)">ver</button>
+                  </li>
+              </ul>
         </div>
     </div>
 </body>
