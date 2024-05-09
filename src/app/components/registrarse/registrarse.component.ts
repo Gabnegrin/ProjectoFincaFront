@@ -3,8 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
 import { Cliente } from '../../models/Cliente.model';
 import { Propietario } from '../../models/Propietario.model';
-import { PropietarioDTO } from '../../models/PropietarioDTO.model';
-import { ClienteDTO } from '../../models/ClienteDTO.model';
 import { AxiosHandlerService } from '../../services/axios-handler.service'
 import { DatosCompartidosService } from '../../services/datos-compartidos.service'
 
@@ -18,9 +16,7 @@ import { DatosCompartidosService } from '../../services/datos-compartidos.servic
 })
 export class RegistrarseComponent {
     cliente: Cliente = new Cliente(null, '', '', '', '', '', 0, 0, false, []);
-    clienteDTO: ClienteDTO = new ClienteDTO(null, '','','','',0,0,false);
     Propietario: Propietario = new Propietario(null, '','','','','',0,0,false,[]);
-    propietarioDTO: PropietarioDTO = new PropietarioDTO(null,'','','','',0,0,false);
     constructor(private router: Router, private axiosHandlerService: AxiosHandlerService, private datoscompartidos: DatosCompartidosService) { 
       console.log('Llegue aqui')
     }

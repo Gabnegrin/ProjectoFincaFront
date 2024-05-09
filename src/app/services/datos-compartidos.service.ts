@@ -9,9 +9,9 @@ import { Propiedad } from '../models/Propiedad.model';
   providedIn: 'root'
 })
 export class DatosCompartidosService {
-  cliente: Cliente = new Cliente(null, '', '', '', '', '', 0, 0, false, []);
-  Propietario: Propietario = new Propietario(null, '','','','','',0,0,false,[]);
-  Propiedad: Propiedad = new Propiedad(null,'',1,1,1,false,this.Propietario,[])
+  cliente: Cliente = new Cliente(null, null, null, null, null, null, 0, 0, false, null);
+  Propietario: Propietario = new Propietario(null, null, null, null, null, null,0,0,false,null);
+  Propiedad: Propiedad = new Propiedad(null, null, 1, 1, 1,false,null,null)
   Solicitud:Solicitud = new Solicitud(null, 123, 456, 789, 1000, new Date('2024-04-29'), new Date('2024-05-06'),1, false,this.cliente,this.Propiedad
   );
 

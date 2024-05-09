@@ -3,7 +3,6 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { AxiosHandlerService } from '../../../services/axios-handler.service';
 import { DatosCompartidosService } from '../../../services/datos-compartidos.service';
 import { Console, log } from 'console';
-import { ClienteDTO } from '../../../models/ClienteDTO.model';
 
 @Component({
   selector: 'app-cperfil',

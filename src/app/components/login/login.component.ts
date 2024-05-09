@@ -27,7 +27,7 @@ export class LoginComponent {
     this.postCliente(this.cliente)
   }
   postCliente(cliente: Cliente): void{
-    this.servico_http.postData('http://localhost:8080/api/javeriana/grupo25/aux/cliente/login', cliente)
+    this.servico_http.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/aux/cliente/login', cliente)
     .then(response => {
       this.servio_compartido.setCliente(response.data)
       if(this.servio_compartido.cliente.id == null){
@@ -42,7 +42,7 @@ export class LoginComponent {
     });
   }
   postPropietario(propitario: Propietario): void{
-    this.servico_http.postData('http://localhost:8080/api/javeriana/grupo25/aux/propietario/login', propitario)
+    this.servico_http.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/aux/propietario/login', propitario)
     .then(response => {
       this.servio_compartido.setPropietario(response.data);
       if(this.servio_compartido.Propietario.id == null){
