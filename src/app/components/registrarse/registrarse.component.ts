@@ -5,6 +5,7 @@ import { Cliente } from '../../models/Cliente.model';
 import { Propietario } from '../../models/Propietario.model';
 import { AxiosHandlerService } from '../../services/axios-handler.service'
 import { DatosCompartidosService } from '../../services/datos-compartidos.service'
+import { TokenServiceService } from '../../services/token-service.service';
 
 
 @Component({
@@ -15,9 +16,10 @@ import { DatosCompartidosService } from '../../services/datos-compartidos.servic
   styleUrl: './registrarse.component.css'
 })
 export class RegistrarseComponent {
-    cliente: Cliente = new Cliente(null, '', '', '', '', '', 0, 0, false, []);
-    Propietario: Propietario = new Propietario(null, '','','','','',0,0,false,[]);
-    constructor(private router: Router, private axiosHandlerService: AxiosHandlerService, private datoscompartidos: DatosCompartidosService) { 
+    cliente: Cliente = new Cliente(null, null, null, null, null, null, 0, 0, false, null);
+    Propietario: Propietario = new Propietario(null, null, null, null, null, null, 0, 0, false, null);
+    url: string = "...";
+    constructor(private router: Router, private axiosHandlerService: AxiosHandlerService, private datoscompartidos: DatosCompartidosService, private tokenservice: TokenServiceService) { 
       console.log('Llegue aqui')
     }
 
@@ -32,7 +34,7 @@ export class RegistrarseComponent {
       this.cliente.contrasena = (<HTMLInputElement>document.getElementById('contrasena_usu')).value;
       this.cliente.edad = parseInt((<HTMLInputElement>document.getElementById('edad_usu')).value, 10);
       this.postCliente(this.cliente);
-      this.router.navigate(['/p_cliente/cperfil']);
+      
     } else if (tipoUsuario === 'propietario') {
       this.Propietario.nombre = (<HTMLInputElement>document.getElementById('nombre_usu')).value;
       this.Propietario.apellido = (<HTMLInputElement>document.getElementById('apellido_usu')).value;
@@ -41,29 +43,57 @@ export class RegistrarseComponent {
       this.Propietario.contrasena = (<HTMLInputElement>document.getElementById('contrasena_usu')).value;
       this.Propietario.edad = parseInt((<HTMLInputElement>document.getElementById('edad_usu')).value, 10);
       this.postPropietario(this.Propietario);
-      this.router.navigate(['/p_propietario/perfil']);
+      
     } else {
       console.error('Tipo de usuario no válido');
     }
     }
 
     postPropietario(propietario: Propietario): void{
-      this.axiosHandlerService.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/cliente', propietario)
-      .then(response => {
-        this.datoscompartidos.setPropietario(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      if(this.Propietario.usuario != null && this.Propietario.contrasena != null){
+        this.url = "http://localhost:8080/api/javeriana/grupo25/propietario"
+        this.axiosHandlerService.postData(this.url, propietario)
+        .then(response => {
+          this.datoscompartidos.setPropietario(response.data);
+          this.axiosHandlerService.postData("http://localhost:8080/api/javeriana/grupo25/jwt/authpropietario", this.datoscompartidos.Propietario)
+          .then(response =>{
+            this.tokenservice.setToken(response);
+            this.navigate2()
+          })
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      }
+      else{
+        console.log("Usuario o contrasena es null");
+      }
     }
     postCliente(cliente: Cliente): void{
-      this.axiosHandlerService.postData('http://gruposjaveriana.dynaco.co/api/javeriana/grupo25/propietario', cliente)
-      .then(response => {
-        this.datoscompartidos.setCliente(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      if(this.cliente.usuario != null && this.cliente.contrasena != null){
+        this.url = "http://localhost:8080/api/javeriana/grupo25/cliente"
+        this.axiosHandlerService.postData(this.url, cliente)
+        .then(response => {
+          this.datoscompartidos.setCliente(response.data);
+          this.axiosHandlerService.postData("http://localhost:8080/api/javeriana/grupo25/jwt/authcliente", this.datoscompartidos.cliente)
+          .then(response =>{
+            this.tokenservice.setToken(response);
+            this.navigate1()
+          })
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      }
+      else{
+        console.log("alguno de los campos es null")
+      }
     }
 
+    navigate1(){
+      this.router.navigate(['/p_cliente/cperfil']);
+    }
+    navigate2(){
+      this.router.navigate(['/p_propietario/perfil']);
+    }
 }

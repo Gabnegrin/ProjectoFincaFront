@@ -22,7 +22,7 @@ export class CsolicitudComponent {
     this.crear_solicitud();
   }
   crear_solicitud(){
-    this.servicio_http.postData('http://localhost:8080/api/javeriana/grupo25/solicitud', this.datosco.Solicitud)
+    this.servicio_http.postDatat('http://localhost:8080/api/javeriana/grupo25/solicitud', this.datosco.Solicitud)
     .then(response => {
       this.roter.navigate(['/p_cliente/cperfil']);
     })

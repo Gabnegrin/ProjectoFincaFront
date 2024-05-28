@@ -35,7 +35,7 @@ export class CsolicitudesComponent {
      const clienteId = this.datoscompartidos.cliente?.id;
      const url = auxiliar1 + (clienteId !== null ? clienteId.toString() : '');
      console.log("esta es la utl" + url);
-     this.servicio_http.getData(url)
+     this.servicio_http.getDatat(url)
      .then(response => {
        this.datoscompartidos.setCliente(response.data);
        this.obtenerDatosUsuario();
@@ -61,7 +61,7 @@ export class CsolicitudesComponent {
   const url = auxiliar1 + (clienteId !== null ? clienteId.toString() : '');
   console.log("esta es la utl" + url);
 
-  this.servicio_http.getData(url)
+  this.servicio_http.getDatat(url)
     .then(response => {
       // Parse the JSON response and create an array of Solicitud objects
       this.solicitudes = response.data.map((solicitudData: any) => {

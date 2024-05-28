@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Cliente } from '../models/Cliente.model';
 import { Propietario } from '../models/Propietario.model';
 import { Solicitud } from '../models/Solicitud.model';
-import { resourceUsage } from 'process';
 import { Propiedad } from '../models/Propiedad.model';
 
 @Injectable({

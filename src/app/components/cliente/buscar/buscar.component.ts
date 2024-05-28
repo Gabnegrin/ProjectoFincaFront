@@ -23,7 +23,7 @@ export class BuscarComponent {
    this.obtener2();
  }
  obtener2(): void {
-  this.servicio_http.getData('http://localhost:8080/api/javeriana/grupo25/propiedad')
+  this.servicio_http.getDatat('http://localhost:8080/api/javeriana/grupo25/propiedad')
     .then(response => {
       this.propiedades = response.data.map((propiedadData: any) => {
         return new Propiedad(

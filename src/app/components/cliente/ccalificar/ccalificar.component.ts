@@ -47,7 +47,7 @@ export class CcalificarComponent {
     this.update();
   }
   update(){
-    this.servico_http.putData('http://localhost:8080/api/javeriana/grupo25/solicitud', this.datcompartido.Solicitud)
+    this.servico_http.putDatat('http://localhost:8080/api/javeriana/grupo25/solicitud', this.datcompartido.Solicitud)
     .then(response => {
       this.router.navigate(['/p_cliente/cperfil']);
     })
