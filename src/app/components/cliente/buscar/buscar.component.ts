@@ -25,7 +25,7 @@ export class BuscarComponent {
  obtener2(): void {
   this.servicio_http.getDatat('http://localhost:8080/api/javeriana/grupo25/propiedad')
     .then(response => {
-      this.propiedades = response.data.map((propiedadData: any) => {
+      this.propiedades = response.map((propiedadData: any) => {
         return new Propiedad(
           propiedadData.id,
           propiedadData.nombre,

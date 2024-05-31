@@ -26,6 +26,7 @@ export class ItemBusquedaComponent {
       this.visitas = this.datoscompa.Propiedad.visitas || this.visitas;
       this.calificacion = this.datoscompa.Propiedad.calificacion || this.calificacion;
       this.valordia = this.datoscompa.Propiedad.valordia || this.valordia;
+      console.log("El id de propiedad es: " + this.datoscompa.Propiedad.id)
     }
   }
 

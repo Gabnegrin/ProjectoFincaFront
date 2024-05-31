@@ -5,12 +5,12 @@
             <div class="profile-header">Perfil</div>
             <!-- Lista de atributos -->
             <ul>
-                <li class="profile-attribute">Usuario: <span>{{ usuario }}</span> <button class="change-button">Cambiar</button></li>
-                <li class="profile-attribute">Nombre: <span>{{ nombre }}</span> <button class="change-button">Cambiar</button></li>
-                <li class="profile-attribute">Apellido: <span>{{ apellido }}</span> <button class="change-button">Cambiar</button></li>
-                <li class="profile-attribute">Correo: <span>{{ correo }}</span> <button class="change-button">Cambiar</button></li>
-                <li class="profile-attribute">Edad: <span>{{ edad }}</span> <button class="change-button">Cambiar</button></li>
-                <li class="profile-attribute">Contraseña: <span>{{ contrasena }}</span> <button class="change-button">Cambiar</button></li>
+                <li class="profile-attribute">Usuario: <span>{{ usuario }}</span> <button class="change-button" (click)="cambiarDatosUsu()">Cambiar</button></li>
+                <li class="profile-attribute">Nombre: <span>{{ nombre }}</span> <button class="change-button" (click)="cambiarDatosUsu()">Cambiar</button></li>
+                <li class="profile-attribute">Apellido: <span>{{ apellido }}</span> <button class="change-button" (click)="cambiarDatosUsu()">Cambiar</button></li>
+                <li class="profile-attribute">Correo: <span>{{ correo }}</span> <button class="change-button" (click)="cambiarDatosUsu()">Cambiar</button></li>
+                <li class="profile-attribute">Edad: <span>{{ edad }}</span> <button class="change-button"(click)="cambiarDatosUsu()"> Cambiar</button></li>
+                <li class="profile-attribute">Contraseña: <span>{{ contrasena }}</span> <button class="change-button" (click)="cambiarDatosUsu()">Cambiar</button></li>
             </ul>
         </div>
     </div>

@@ -22,8 +22,11 @@
         </div>
         <div class="options">
             <div class="options-header">Solicitudes</div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste alias deserunt itaque sit animi. Debitis animi quam, ipsam inventore neque itaque cum rem, voluptates veniam, eligendi eius! Minima, delectus aspernatur?</p>
-            <!-- Resto del contenido -->
+            <ul>
+                <li *ngFor="let solicitud of solicitudes">
+                  ID: {{ solicitud.id }} - Entrada: {{ solicitud.entrada }} - Salidad: {{ solicitud.salida }}  <button (click)="obtenerSolcitud(solicitud)">ver</button>
+                  </li>
+              </ul>
         </div>
     </div>
 </body>

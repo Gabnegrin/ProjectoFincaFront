@@ -7,6 +7,7 @@ body {
 }
 
 .container {
+    padding-top: 12rem;
     display: flex;
     background-color: #f2f2f2; /* Fondo gris claro */
     min-height: 100vh;

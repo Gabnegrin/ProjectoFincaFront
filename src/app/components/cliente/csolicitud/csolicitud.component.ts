@@ -3,6 +3,8 @@ import { DatosCompartidosService } from '../../../services/datos-compartidos.ser
 import { Solicitud } from '../../../models/Solicitud.model';
 import { AxiosHandlerService } from '../../../services/axios-handler.service';
 import { Router } from '@angular/router';
+import { Cliente } from '../../../models/Cliente.model';
+import { Propiedad } from '../../../models/Propiedad.model';
 
 @Component({
   selector: 'app-csolicitud',
@@ -14,15 +16,14 @@ import { Router } from '@angular/router';
 export class CsolicitudComponent {
   constructor(private datosco: DatosCompartidosService, private servicio_http: AxiosHandlerService, private roter : Router){}
 
-  Solicitud: Solicitud = new Solicitud(null, 0, 0, 0, 0, new Date('2024-04-29'), new Date('2024-05-06'),1, false,this.datosco.cliente,this.datosco.Propiedad);
+  Solicitud: Solicitud = new Solicitud(null, null, null, null, null, null, null, null, false, this.datosco.cliente, this.datosco.Propiedad)
   
   sooli(){
-    this.datosco.Solicitud.entrada = (<HTMLInputElement>document.getElementById('fecha-entrada')).valueAsDate;
-    this.datosco.Solicitud.salida = (<HTMLInputElement>document.getElementById('fecha-salida')).valueAsDate;
+    
     this.crear_solicitud();
   }
   crear_solicitud(){
-    this.servicio_http.postDatat('http://localhost:8080/api/javeriana/grupo25/solicitud', this.datosco.Solicitud)
+    this.servicio_http.postDatat('http://localhost:8080/api/javeriana/grupo25/solicitud', this.Solicitud)
     .then(response => {
       this.roter.navigate(['/p_cliente/cperfil']);
     })

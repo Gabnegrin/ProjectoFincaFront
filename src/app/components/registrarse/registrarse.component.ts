@@ -57,7 +57,7 @@ export class RegistrarseComponent {
           this.datoscompartidos.setPropietario(response.data);
           this.axiosHandlerService.postData("http://localhost:8080/api/javeriana/grupo25/jwt/authpropietario", this.datoscompartidos.Propietario)
           .then(response =>{
-            this.tokenservice.setToken(response);
+            this.tokenservice.setToken(response.data.token);
             this.navigate2()
           })
         })
@@ -77,7 +77,8 @@ export class RegistrarseComponent {
           this.datoscompartidos.setCliente(response.data);
           this.axiosHandlerService.postData("http://localhost:8080/api/javeriana/grupo25/jwt/authcliente", this.datoscompartidos.cliente)
           .then(response =>{
-            this.tokenservice.setToken(response);
+            console.log(response.data.token)
+            this.tokenservice.setToken(response.data.token);
             this.navigate1()
           })
         })

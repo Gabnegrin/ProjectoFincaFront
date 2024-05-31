@@ -32,13 +32,12 @@ export class LoginComponent {
     this.cliente.usuario = (<HTMLInputElement>document.getElementById('usuario')).value;
     this.cliente.contrasena = (<HTMLInputElement>document.getElementById('contrasena')).value;
     this.Propietario.usuario = (<HTMLInputElement>document.getElementById('usuario')).value;
-    this.cliente.contrasena = (<HTMLInputElement>document.getElementById('contrasena')).value;
+    this.Propietario.contrasena = (<HTMLInputElement>document.getElementById('contrasena')).value;
     this.postCliente(this.cliente)
   }
   postCliente(cliente: Cliente): void{
     this.servico_http.postData('http://localhost:8080/api/javeriana/grupo25/aux/cliente/login', cliente)
     .then(response => {
-      
       this.servio_compartido.setCliente(response.data)
       if(this.servio_compartido.cliente.id == null){
         this.postPropietario(this.Propietario)
@@ -76,7 +75,7 @@ export class LoginComponent {
           this.token2 = response.data
           if(this.token2.token != null){
             this.tokenservice.setToken(this.token2.token);
-            this.navigate1()
+            this.navigate2()
           }
           else{
             console.log("problemas con el token")

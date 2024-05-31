@@ -12,8 +12,8 @@ export class Solicitud {
   salida: Date | null;
   estado: number | null;
   eliminado: boolean| null;
-  cliente: Cliente | null;
-  propiedad2: Propiedad | null;
+  cliente: Cliente | null | number;
+  propiedad2: Propiedad | null | number;
   
   constructor(
     id: number | null = null,
@@ -25,8 +25,8 @@ export class Solicitud {
     salida: Date | null = null,
     estado: number | null = null,
     eliminado: boolean | null = null,
-    cliente: Cliente | null = null,
-    propiedad2: Propiedad | null = null
+    cliente: Cliente | null | number = null,
+    propiedad2: Propiedad | null | number= null
   ) {
     this.id = id;
     this.c_cliente = c_cliente;

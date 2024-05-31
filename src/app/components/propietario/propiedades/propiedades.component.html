@@ -1,34 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitudes</title>
-    <link rel="stylesheet" href="propiedades.component.css">
-</head>
-<body>
-    <div class="container">
-        <div class="profile">
-            <div class="profile-header">Perfil</div>
-            <!-- Lista de atributos -->
-            <ul>
-                <li class="profile-attribute">Usuario: <span id="usuario">...</span></li>
-                <li class="profile-attribute">Nombre: <span id="nombre">...</span></li>
-                <li class="profile-attribute">Apellido: <span id="apellido">...</span></li>
-                <li class="profile-attribute">Correo: <span id="correo">...</span></li>
-                <li class="profile-attribute">Edad: <span id="edad">...</span></li>
-                <li class="profile-attribute">Calificación: <span id="calificacion">...</span></li>
-            </ul>
-        </div>
-        <div class="options">
-            <div class="profile-header">Propiedades</div> <!-- Nuevo título de propiedades -->
-            <!-- Botón Agregar -->
-            <button class="agregar-btn">Agregar</button>
-            <div class="espaciado">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste alias deserunt itaque sit animi. Debitis animi quam, ipsam inventore neque itaque cum rem, voluptates veniam, eligendi eius! Minima, delectus aspernatur?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste alias deserunt itaque sit animi. Debitis animi quam, ipsam inventore neque itaque cum rem, voluptates veniam, eligendi eius! Minima, delectus aspernatur?</p>
-            </div>
-        </div>
+
+<div class="container">
+    <div class="profile">
+        <div class="profile-header">Perfil</div>
+        <ul>
+            <li class="profile-attribute">Usuario: <span id="usuario">...</span></li>
+            <li class="profile-attribute">Nombre: <span id="nombre">...</span></li>
+            <li class="profile-attribute">Apellido: <span id="apellido">...</span></li>
+            <li class="profile-attribute">Correo: <span id="correo">...</span></li>
+            <li class="profile-attribute">Edad: <span id="edad">...</span></li>
+            <li class="profile-attribute">Calificación: <span id="calificacion">...</span></li>
+        </ul>
     </div>
-</body>
-</html>
+    <div class="options">
+        <div class="profile-header"></div>
+        <button class="agregar-btn" (click)="agregar()">Agregar</button>
+        <div class="content-header">Propiedades Encontradas</div>
+            <ul>
+                <li *ngFor="let propiedad of propiedades">
+                  ID: {{ propiedad.id }} - nombre: {{ propiedad.nombre }} - valor por dia: {{ propiedad.valordia }}  <button (click)="obtenerpropiedad(propiedad)">ver</button>
+                  </li>
+              </ul>
+    </div>
+</div>
+

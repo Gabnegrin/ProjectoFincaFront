@@ -37,7 +37,7 @@ export class CsolicitudesComponent {
      console.log("esta es la utl" + url);
      this.servicio_http.getDatat(url)
      .then(response => {
-       this.datoscompartidos.setCliente(response.data);
+       this.datoscompartidos.setCliente(response);
        this.obtenerDatosUsuario();
 
      })
@@ -64,7 +64,7 @@ export class CsolicitudesComponent {
   this.servicio_http.getDatat(url)
     .then(response => {
       // Parse the JSON response and create an array of Solicitud objects
-      this.solicitudes = response.data.map((solicitudData: any) => {
+      this.solicitudes = response.map((solicitudData: any) => {
         return new Solicitud(
           solicitudData.id,
           solicitudData.c_cliente,
